@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Media Interaktif: Teks Prosedur SMP Kelas 9</title>
+  <style>
+    :root {
+      --primary: #4A90E2;
+      --secondary: #50E3C2;
+      --dark: #2C3E50;
+      --light: #F8F9FA;
+      --success: #2ECC71;
+      --warning: #E67E22;
+      --card-bg: #FFFFFF;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #EBF2FA;
+      color: var(--dark);
+      line-height: 1.6;
+      padding: 15px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid var(--light);
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 5px;
+    }
+
+    header p {
+      font-size: 0.95rem;
+      color: #666;
+    }
+
+    .section {
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      color: var(--dark);
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Cards Tahapan Teks Prosedur */
+    .grid-tahapan {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+      margin-bottom: 15px;
+    }
+
+    .card-tahap {
+      background: var(--light);
+      padding: 15px;
+      border-radius: 8px;
+      border-left: 4px solid var(--primary);
+    }
+
+    .card-tahap h3 {
+      font-size: 1.1rem;
+      color: var(--primary);
+      margin-bottom: 5px;
+    }
+
+    .btn-docs {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      background: var(--primary);
+      color: white;
+      text-decoration: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .btn-docs:hover {
+      background: #357ABD;
+    }
+
+    /* Form Data Siswa */
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    /* Area Urutan Langkah Interaktif */
+    .drag-list {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 15px;
+    }
+
+    .drag-item {
+      background: var(--light);
+      border: 1px solid #ddd;
+      padding: 12px;
+      margin-bottom: 8px;
+      border-radius: 6px;
+      cursor: grab;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .drag-item:active {
+      cursor: grabbing;
+      background: #E2E8F0;
+    }
+
+    .drag-item select {
+      width: auto;
+      padding: 4px;
+    }
+
+    /* Tombol Submit */
+    .btn-submit {
+      width: 100%;
+      background: var(--success);
+      color: white;
+      border: none;
+      padding: 14px;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .btn-submit:hover {
+      background: #27AE60;
+    }
+
+    .btn-submit:disabled {
+      background: #BDC3C7;
+      cursor: not-allowed;
+    }
+
+    /* Notifikasi Hasil */
+    #result-box {
+      margin-top: 15px;
+      padding: 15px;
+      border-radius: 8px;
+      display: none;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .success-box {
+      background: #D4EDDA;
+      color: #155724;
+      border: 1px solid #C3E6CB;
+    }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.4rem; }
+      .container { padding: 15px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Aplikasi Interaktif Teks Prosedur</h1>
+      <p>Bahasa Indonesia - Kelas 9 SMP</p>
+    </header>
+
+    <!-- SECTION 1: MATERI RINGKAS -->
+    <div class="section">
+      <h2>📌 Tahapan Teks Prosedur</h2>
+      <div class="grid-tahapan">
+        <div class="card-tahap">
+          <h3>1. Tujuan</h3>
+          <p>Menjelaskan maksud atau hasil akhir yang ingin dicapai dari prosedur.</p>
+        </div>
+        <div class="card-tahap">
+          <h3>2. Bahan & Alat</h3>
+          <p>Merincikan perlengkapan, material, atau ukuran yang dibutuhkan.</p>
+        </div>
+        <div class="card-tahap">
+          <h3>3. Langkah-Langkah</h3>
+          <p>Urutan tindakan/instruksi secara berurutan dan logis.</p>
+        </div>
+        <div class="card-tahap">
+          <h3>4. Penutup / Kesan</h3>
+          <p>Simpulan, panduan pengujian, atau kata-kata apresiasi (opsional).</p>
+        </div>
+      </div>
+
+      <!-- Placeholder URL Google Docs -->
+      <a href="https://docs.google.com/document/d/YOUR_DOCUMENT_ID_HERE/edit" target="_blank" class="btn-docs">
+        📖 Baca Materi Lengkap di Google Docs
+      </a>
+    </div>
+
+    <!-- SECTION 2: IDENTITAS SISWA -->
+    <div class="section">
+      <h2>👤 Identitas Siswa</h2>
+      <div class="form-group">
+        <label for="student-name">Nama Lengkap:</label>
+        <input type="text" id="student-name" placeholder="Masukkan nama kamu" required>
+      </div>
+      <div class="form-group">
+        <label for="student-class">Kelas:</label>
+        <select id="student-class">
+          <option value="9A">9A</option>
+          <option value="9B">9B</option>
+          <option value="9C">9C</option>
+          <option value="9D">9D</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- SECTION 3: KUIS SIMULASI URUTAN TAHAPAN -->
+    <div class="section">
+      <h2>📝 Kuis: Susun Tahapan Membuat Jus Alpukat</h2>
+      <p style="font-size: 0.9rem; margin-bottom: 10px; color: #555;">Pilih nomor urutan yang benar (1 - 4) untuk setiap bagian di bawah ini:</p>
+
+      <ul class="drag-list">
+        <li class="drag-item">
+          <select class="order-select" data-correct="2">
+            <option value="">-</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+          <span>Siapkan 1 buah alpukat matang, 2 sendok susu kental manis, es batu, dan blender.</span>
+        </li>
+        <li class="drag-item">
+          <select class="order-select" data-correct="4">
+            <option value="">-</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+          <span>Jus alpukat lezat siap dinikmati bersama keluarga!</span>
+        </li>
+        <li class="drag-item">
+          <select class="order-select" data-correct="1">
+            <option value="">-</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+          <span>Membuat jus alpukat segar dan menyehatkan di rumah dengan mudah.</span>
+        </li>
+        <li class="drag-item">
+          <select class="order-select" data-correct="3">
+            <option value="">-</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+          <span>Kerok daging alpukat, masukkan ke blender bersama es dan susu, lalu blender hingga halus.</span>
+        </li>
+      </ul>
+
+      <button class="btn-submit" id="btn-submit" onclick="submitQuiz()">Kirim Jawaban & Simpan Nilai</button>
+      <div id="result-box"></div>
+    </div>
+  </div>
+
+  <script>
+    // Placeholder Web App URL dari Google Apps Script
+    const GAS_WEB_APP_URL = "https://script.google.com/macros/s/YOUR_APPS_SCRIPT_WEB_APP_ID/exec";
+
+    function submitQuiz() {
+      const name = document.getElementById('student-name').value.trim();
+      const studentClass = document.getElementById('student-class').value;
+      const selects = document.querySelectorAll('.order-select');
+      const submitBtn = document.getElementById('btn-submit');
+      const resultBox = document.getElementById('result-box');
+
+      if (!name) {
+        alert("Silakan isi Nama Lengkap terlebih dahulu!");
+        return;
+      }
+
+      let correctCount = 0;
+      let totalQuestions = selects.length;
+      let allAnswered = true;
+
+      selects.forEach(select => {
+        const selectedValue = select.value;
+        const correctAnswer = select.getAttribute('data-correct');
+
+        if (!selectedValue) {
+          allAnswered = false;
+        } else if (selectedValue === correctAnswer) {
+          correctCount++;
+        }
+      });
+
+      if (!allAnswered) {
+        alert("Harap pilih urutan untuk semua tahapan!");
+        return;
+      }
+
+      // Hitung Skor (Skala 100)
+      const score = Math.round((correctCount / totalQuestions) * 100);
+
+      // Nonaktifkan tombol saat mengirim
+      submitBtn.disabled = true;
+      submitBtn.innerText = "Mengirim data...";
+
+      // Kirim data ke Google Sheets via Google Apps Script API
+      const formData = new URLSearchParams();
+      formData.append("nama", name);
+      formData.append("kelas", studentClass);
+      formData.append("skor", score);
+
+      fetch(GAS_WEB_APP_URL, {
+        method: "POST",
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        resultBox.className = "success-box";
+        resultBox.style.display = "block";
+        resultBox.innerHTML = `🎉 Selamat ${name}! Jawaban berhasil dikirim.<br><strong>Skor Kamu: ${score} / 100</strong>`;
+        submitBtn.innerText = "Jawaban Terkirim";
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        // Tetap tampilkan nilai jika ada kendala koneksi API
+        resultBox.className = "success-box";
+        resultBox.style.display = "block";
+        resultBox.innerHTML = `Skor Kamu: <strong>${score} / 100</strong>.<br><small>(Catatan: Kendala koneksi ke database spreadsheet)</small>`;
+        submitBtn.disabled = false;
+        submitBtn.innerText = "Coba Kirim Lagi";
+      });
+    }
+  </script>
+</body>
+</html>
